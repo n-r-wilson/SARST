@@ -1,0 +1,232 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="SARST_DEV.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> Salvation Army Resident Services Tracker</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+
+    <webopt:bundlereference runat="server" path="~/Content/css" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    <style>
+
+        @font-face {
+	        font-family: TrajanPro3;
+	        src: url("fonts/TrajanPro3Regular.ttf");
+        }
+
+        :root {
+            --sarst-color-primary: #006595;
+            --sarst-color-primarylight: #3b96c2;
+            --sarst-color-primarylighter: #9cd9f5;
+            --sarst-color-primarydark: #34465f;
+            --sarst-color-primarydarker: #2a313f;
+
+            --sarst-color-secondary: #eb2533;
+            --sarst-color-secondarylight: #fb979e;
+            --sarst-color-secondarylighter: #fbbabf;
+            --sarst-color-secondarydark: #5e080e;
+
+            --sarst-color-offwhite: #ffffff;
+        }
+
+        * {
+            color: var(--sarst-color-primarydark)
+        }
+
+        .sidenavbar {
+            border-right:1px solid #000;
+            position:absolute;
+            right:70%;
+
+            width:20%;
+            min-width:300px;
+
+            padding:10px;
+
+            height:70%;
+
+            color: var(--sarst-color-primarydark);
+        }
+
+        .sidenavbar p {
+            width:100%;
+            margin: 0px;
+            padding: 5px;
+            padding-left:10px;
+        }
+
+        .sidenavbar h3 {
+            width:100%;
+            margin: 0px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+
+        .sidenavbar a {
+            color: var(--sarst-color-primarydark);
+        }
+
+        .sidenavbar a:hover {
+            color: var(--sarst-color-primarydark);
+        }
+
+        .sidenavbar p:hover {
+            background-color:  var(--sarst-color-secondarylighter);
+            border-left: 5px solid var(--sarst-color-secondary);
+        }
+
+        .sidenavbar p.currentpage {
+            background-color: var(--sarst-color-primarylighter);
+            border-left: 5px solid var(--sarst-color-primary);
+        }
+
+        .sidenavbar input {
+            width:100%;
+            margin: 0px;
+            padding: 5px;
+            padding-left:10px;
+            border: none;
+            background-color: var(--sarst-color-offwhite);
+            text-align: left;
+        }
+
+        .sidenavbar input:hover {
+            background-color:  var(--sarst-color-secondarylighter);
+            border-left: 5px solid var(--sarst-color-secondary);
+        }
+
+        .list-item {
+            margin-top: 10px;
+            box-shadow: 3px 3px 5px var(--sarst-color-primarydark); 
+            border: 1px solid var(--sarst-color-primary); 
+        }
+
+        .list-item-label {
+            color: var(--sarst-color-offwhite);
+            background-color: var(--sarst-color-primary); 
+        }
+
+        .list-item-content {
+            padding: 20px;
+            border-left: 15px solid var(--sarst-color-primarylight); 
+        }
+
+        .list-item-button {
+            margin: 3px;
+            background-color: var(--sarst-color-primary);
+            border: none;
+        }
+
+        .list-item-button:hover {
+            margin: 3px;
+            background-color: var(--sarst-color-primarydark);
+            box-shadow: inset 0px 0px 5px var(--sarst-color-primary);
+            border-radius: 5px;
+        }
+
+    </style>
+
+</head>
+<body style="padding:0px">
+    <form runat="server" style="padding:0px">
+        <asp:ScriptManager runat="server">
+            <Scripts>
+                <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
+                <%--Framework Scripts--%>
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="bootstrap" />
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+                <%--Site Scripts--%>
+            </Scripts>
+        </asp:ScriptManager>
+        
+        <!-- Heading Bar -->
+        <div style="background-color: var(--sarst-color-primarydark); 
+            color: var(--sarst-color-offwhite);
+            border-bottom: 1px solid var(--sarst-color-primarydark); 
+            box-shadow: 0px 5px 5px var(--sarst-color-primarydarker);
+            font-family: TrajanPro3;">
+            <img src="images/photo.png" alt="Salvation Army Logo" style="height:100px" />
+            <h1 style="position:absolute; left: 100px; top:15px; color:var(--sarst-color-offwhite)"><a runat="server" href="~/" style="color: var(--sarst-color-offwhite);">Resident Services Tracker</a></h1>
+        </div>
+        <div id="MasterContainer" style="height:100%; margin:auto; padding-top:25px;">
+            <div class="sidenavbar" id="SideNavBar">
+                <% if (GetCurrentUser() == null) { %>
+                    <h3>Login and Registration</h3>
+                    <p><a runat="server" href="~/Login"       >Login</a></p>
+                    <p><a runat="server" href="~/Registration">Registration</a></p>
+
+                <% } else { %>
+                        <h3>Manage Residents</h3>
+                        <p><a runat="server" href="~/ResidentList"    >Resident List</a></p>
+                        <p><a runat="server" href="~/ResidentSearch"  >Resident Search</a></p>
+                        <p><a runat="server" href="~/ResidentAdd"     >Add a New Resident</a></p>
+                        <p><a runat="server" href="~/ResidentStayList">Resident Stay List</a></p>
+
+                        <h3>Manage Services</h3>
+                        <p><a runat="server" href="~/AvailableServiceList">Available Service List</a></p>
+                    <% if (GetCurrentUser().type == SARST_DEV.Model.UserType.ADMIN 
+                        || GetCurrentUser().type == SARST_DEV.Model.UserType.ROOT) { %>
+                        <p><a runat="server" href="~/AvailableServiceAdd">Add Available Service</a></p>
+                        <p><a runat="server" href="~/DataOutput">Download Data Files</a></p>
+                    <% } %>
+
+                    <% if (GetCurrentUser().type == SARST_DEV.Model.UserType.ROOT) { %>
+                        <h3>Manage Users</h3>
+                        <p><a runat="server" href="~/UserRegistrationRootValidation">User Validation</a></p>
+                        <p><a runat="server" href="~/UserList">User List</a></p>
+                    <% } %>
+                    <asp:Button runat="server" OnClick="LogOut_Click" Text="Log Out"/>
+                <% } %>
+                <script>
+                    // Sets the css class of the sidebar link to the current page to "currentpage", which highlights the link.
+                    let links = document.getElementById("SideNavBar").getElementsByTagName("a");
+                    let page_name = window.location.href.split("/")[3];
+                    console.log("page name: " + page_name);
+                    for (let i = 0; i < links.length; i++) {
+                        let link_page_name = links[i].href.split("/")[3];
+                        console.log("link name: " + link_page_name);
+                        if (link_page_name == page_name)
+                            links[i].parentElement.className = "currentpage";
+                    }
+                </script>
+            </div>
+
+            <div style="position:absolute; left:30%; width:60%; min-width:600px; max-width:1200px; padding-left:25px; padding-top:25px; padding-bottom:50px;">
+                <% if (Session["messageFromSender"] != null) { %>
+                    <div style="border-radius: 3px; margin: auto; margin-top: 10px; margin-bottom: 10px; text-align: center; border: 2px solid black; width: max-content;">
+                        <p style="font-size: larger; display:inline-block; margin: 10px;"><%= Session["messageFromSender"] %></p>
+                    </div>
+                <% } Session.Remove("messageFromSender"); %>
+
+                <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+        </div>
+    </form>
+
+    <!--
+    <footer style="position:absolute; bottom:5px; left:5%; width:90%;">
+        <hr style="margin-top:100px;"/>
+        <p>&copy; <%: DateTime.Now.Year %> - Salvation Army Resident Services Tracker</p>
+    </footer>
+    -->
+</body>
+</html>

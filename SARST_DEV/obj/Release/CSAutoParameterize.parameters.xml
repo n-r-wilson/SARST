@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="sarst_database-Web.config Connection String" description="sarst_database Connection String used in web.config by the application to access the database." defaultValue="Server=tcp:sarst-devdbserver.database.windows.net,1433;Initial Catalog=SARST_DEV_db;Persist Security Info=False;User ID=sarst_admin;Password=asdfasdf12#$;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Noah\\Documents\\GitHub\\Duckies-repo\\RubberDucksSARSTWebApp\\SARST_DEV\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='sarst_database']/@connectionString" />
+  </parameter>
+</parameters>
